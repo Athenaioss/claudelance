@@ -20,6 +20,6 @@
     "clean": "pnpm -r run clean && rm -rf node_modules"
   },
   "dependencies": {
-    "solc": "0.8.24"
+    "solc": "0.8.27"
   }
 }
