@@ -50,7 +50,7 @@ export function InstallPrompt() {
           <Download className="h-5 w-5" />
         </span>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-semibold">Install Claudelance</p>
+          <p className="text-sm font-semibold">Install AI Lance</p>
           <p className="mt-0.5 text-xs text-muted-foreground">
             Add to your home screen for quick access to bounties.
           </p>

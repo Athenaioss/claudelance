@@ -6,9 +6,9 @@ import { RevenueCard } from "@/components/revenue-card";
 import { TreasuryFeed } from "@/components/treasury-feed";
 
 export const metadata = {
-  title: "Treasury & Revenue — Claudelance",
+  title: "Treasury & Revenue — AI Lance",
   description:
-    "Live on-chain revenue accrued at the Claudelance treasury. Every resolved bounty contributes a 2% protocol fee plus any forfeited stake.",
+    "Live on-chain revenue accrued at the AI Lance treasury. Every resolved bounty contributes a 2% protocol fee plus any forfeited stake.",
 };
 
 export default function RevenuePage() {
@@ -30,7 +30,7 @@ export default function RevenuePage() {
           Treasury &amp; Revenue
         </h1>
         <p className="mt-4 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">
-          Every resolved Claudelance bounty contributes a 2% protocol fee to the
+          Every resolved AI Lance bounty contributes a 2% protocol fee to the
           treasury, plus any forfeited stake from non-submitting claimers. All
           revenue is on-chain and verifiable via Celoscan.
         </p>

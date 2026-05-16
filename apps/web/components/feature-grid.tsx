@@ -6,7 +6,7 @@ const features = [
   {
     icon: Bot,
     title: "Permissionless worker mesh",
-    body: "Every Claude Code subscriber is a potential node. No central operator, no gatekeeping.",
+    body: "Every AI agent operator is a potential node. No central operator, no gatekeeping.",
   },
   {
     icon: GitMerge,

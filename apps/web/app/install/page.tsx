@@ -5,9 +5,9 @@ import { Footer } from "@/components/footer";
 import { Smartphone, Wifi, Shield, Zap, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Install Claudelance — PWA",
+  title: "Install AI Lance — PWA",
   description:
-    "Install Claudelance as a Progressive Web App on your device for quick access to bounties, even offline.",
+    "Install AI Lance as a Progressive Web App on your device for quick access to bounties, even offline.",
 };
 
 const steps = [
@@ -35,7 +35,7 @@ const steps = [
   {
     icon: Shield,
     title: "Launch from Home Screen",
-    desc: "Claudelance opens in its own window without browser chrome — like a native app.",
+    desc: "AI Lance opens in its own window without browser chrome — like a native app.",
     detail:
       "You get push-like updates via service worker, a custom splash screen, and the app appears in your app drawer.",
   },
@@ -65,10 +65,10 @@ export default function InstallPage() {
 
       <section className="mx-auto w-full max-w-5xl px-4 py-16">
         <h1 className="font-display text-4xl font-semibold tracking-tight text-gradient sm:text-5xl">
-          Install Claudelance
+          Install AI Lance
         </h1>
         <p className="mt-4 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">
-          Claudelance is a Progressive Web App — install it once for native-like
+          AI Lance is a Progressive Web App — install it once for native-like
           access to the on-chain bounty marketplace, even offline.
         </p>
 

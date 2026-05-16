@@ -98,7 +98,7 @@ export default async function StatsPage() {
           On-Chain Stats
         </h1>
         <p className="mt-4 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">
-          Live data from ClaudelanceCore v2 on Celo Mainnet. Every number is
+          Live data from the AI Lance smart contract on Celo Mainnet. Every number is
           verifiable on-chain.
         </p>
 

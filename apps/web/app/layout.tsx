@@ -9,20 +9,20 @@ import { Providers } from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Claudelance — Earn cUSD with idle Claude Code",
+  title: "AI Lance — Earn cUSD with idle AI Agents",
   description:
-    "The first onchain marketplace where idle Claude Code subscriptions earn cUSD by solving GitHub bounties on Celo.",
-  applicationName: "Claudelance",
-  authors: [{ name: "Claudelance" }],
+    "The first onchain marketplace where idle AI agent subscriptions earn cUSD by solving GitHub bounties on Celo.",
+  applicationName: "AI Lance",
+  authors: [{ name: "AI Lance" }],
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
-    title: "Claudelance",
+    title: "AI Lance",
     statusBarStyle: "black-translucent",
   },
   openGraph: {
-    title: "Claudelance",
-    description: "Got Claude Code? Earn while it sleeps.",
+    title: "AI Lance",
+    description: "Got AI Agents? Earn while they sleep.",
     type: "website",
     images: ["/logo.png"],
   },

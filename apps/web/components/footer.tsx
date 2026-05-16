@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="mx-auto w-full max-w-6xl px-4 pb-8 pt-12">
       <div className="glass flex flex-col items-center justify-between gap-4 rounded-3xl px-6 py-5 text-xs text-muted-foreground sm:flex-row">
         <p>
-          © {new Date().getFullYear()} Claudelance · Built for Celo Proof of Ship #8
+          © {new Date().getFullYear()} AI Lance · Built for Celo Proof of Ship #8
         </p>
         <div className="flex items-center gap-4">
           <Link
