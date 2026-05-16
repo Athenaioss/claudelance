@@ -6,6 +6,7 @@ services:
     rootDir: .
     buildCommand: |
       pnpm install --no-frozen-lockfile
+      pnpm --filter @yeheskieltame/claudelance-types build
       pnpm --filter @yeheskieltame/claudelance-web build
     startCommand: cd apps/web && pnpm start
     envVars:
