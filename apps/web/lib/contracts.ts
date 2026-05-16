@@ -1,16 +1,22 @@
-import deployment from "../../../contracts/deployments/celo-sepolia.json";
-import { celoSepolia } from "./chain";
+import deploymentSepolia from "../../../contracts/deployments/celo-sepolia.json";
+import deploymentMainnet from "../../../contracts/deployments/celo-mainnet.json";
+import { celoSepolia, celoMainnet } from "./chain";
 
-/// Static deployment metadata pulled from the committed deployment record.
-/// Importing JSON keeps the frontend in lockstep with the contract repo — the
-/// next mainnet deploy adds celo-mainnet.json and we add a sibling import.
+/// Static deployment metadata pulled from the committed deployment records.
 export const deployments = {
   [celoSepolia.id]: {
-    core: deployment.core as `0x${string}`,
-    cUSD: deployment.tokens.cUSD as `0x${string}`,
-    treasury: deployment.treasury as `0x${string}`,
-    ciRelayer: deployment.ciRelayer as `0x${string}`,
-    owner: deployment.owner as `0x${string}`,
+    core: deploymentSepolia.core as `0x${string}`,
+    cUSD: deploymentSepolia.tokens.cUSD as `0x${string}`,
+    treasury: deploymentSepolia.treasury as `0x${string}`,
+    ciRelayer: deploymentSepolia.ciRelayer as `0x${string}`,
+    owner: deploymentSepolia.owner as `0x${string}`,
+  },
+  [celoMainnet.id]: {
+    core: deploymentMainnet.core as `0x${string}`,
+    cUSD: deploymentMainnet.tokens.cUSD as `0x${string}`,
+    treasury: deploymentMainnet.treasury as `0x${string}`,
+    ciRelayer: deploymentMainnet.ciRelayer as `0x${string}`,
+    owner: deploymentMainnet.owner as `0x${string}`,
   },
 } as const;
 
@@ -20,9 +26,8 @@ export function getDeployment(chainId: number) {
   return entry;
 }
 
-/// Minimal ClaudelanceCore ABI surface — read-only views the frontend needs for
-/// dashboards. Write-side ABI lives next to the post-bounty / claim flows so
-/// each route ships only the calls it actually invokes.
+/// ClaudelanceCore v2 ABI surface — read-only views the frontend needs.
+/// totalBountyVolume / totalProtocolRevenue are per-token (v2).
 export const coreAbi = [
   {
     type: "function",
@@ -35,14 +40,14 @@ export const coreAbi = [
     type: "function",
     name: "totalBountyVolume",
     stateMutability: "view",
-    inputs: [],
+    inputs: [{ type: "address", name: "token" }],
     outputs: [{ type: "uint256" }],
   },
   {
     type: "function",
     name: "totalProtocolRevenue",
     stateMutability: "view",
-    inputs: [],
+    inputs: [{ type: "address", name: "token" }],
     outputs: [{ type: "uint256" }],
   },
   {
