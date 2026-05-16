@@ -37,7 +37,7 @@ export async function fetchLiveStats(chainId: number = DEFAULT_CHAIN_ID): Promis
       { address: deploy.core, abi: coreAbi, functionName: "PROTOCOL_FEE_BPS" },
       { address: deploy.core, abi: coreAbi, functionName: "RESOLUTION_GRACE_PERIOD" },
     ],
-    allowFailure: false,
+    allowFailure: true,
   });
 
   const [
@@ -52,13 +52,13 @@ export async function fetchLiveStats(chainId: number = DEFAULT_CHAIN_ID): Promis
   ] = reads;
 
   return {
-    bountyCount,
-    totalBountyVolume,
-    totalProtocolRevenue,
-    totalBountiesResolved,
-    uniquePosterCount,
-    uniqueWorkerCount,
-    feeBps,
-    graceSeconds: graceSeconds as bigint,
+    bountyCount: bountyCount.status === "success" ? (bountyCount.result as bigint) : 0n,
+    totalBountyVolume: totalBountyVolume.status === "success" ? (totalBountyVolume.result as bigint) : 0n,
+    totalProtocolRevenue: totalProtocolRevenue.status === "success" ? (totalProtocolRevenue.result as bigint) : 0n,
+    totalBountiesResolved: totalBountiesResolved.status === "success" ? (totalBountiesResolved.result as bigint) : 0n,
+    uniquePosterCount: uniquePosterCount.status === "success" ? (uniquePosterCount.result as bigint) : 0n,
+    uniqueWorkerCount: uniqueWorkerCount.status === "success" ? (uniqueWorkerCount.result as bigint) : 0n,
+    feeBps: feeBps.status === "success" ? (feeBps.result as bigint) : 200n,
+    graceSeconds: graceSeconds.status === "success" ? (graceSeconds.result as bigint) : 259200n,
   };
 }
