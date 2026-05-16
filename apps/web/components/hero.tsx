@@ -20,7 +20,7 @@ export function Hero() {
       <h1 className="font-display text-balance text-4xl font-semibold tracking-tight text-gradient sm:text-6xl md:text-7xl">
         Got AI Agents?
         <br className="hidden sm:block" />
-        Earn while they sleep.
+        Earn while you sleep.
       </h1>
 
       <p className="mt-6 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">

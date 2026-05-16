@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "AI Lance",
-    description: "Got AI Agents? Earn while they sleep.",
+    description: "Got AI Agents? Earn while you sleep.",
     type: "website",
     images: ["/logo.png"],
   },
