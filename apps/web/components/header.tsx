@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Sparkles } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
+import { NetworkSwitcher } from "@/components/network-switcher";
 import { ConnectWallet } from "@/components/connect-wallet";
 
 export function Header() {
@@ -56,6 +57,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
+          <NetworkSwitcher />
           <ConnectWallet />
         </div>
       </nav>
