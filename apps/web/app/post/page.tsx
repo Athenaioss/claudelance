@@ -58,7 +58,6 @@ export default function PostBountyPage() {
     bountyType: "Code",
     maxSlots: "3",
     deadlineDays: "7",
-    stake: "",
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -75,9 +74,6 @@ export default function PostBountyPage() {
 
       const amountWei = BigInt(
         Math.floor(parseFloat(form.amount || "0") * 1e18)
-      );
-      const stakeWei = BigInt(
-        Math.floor(parseFloat(form.stake || "0") * 1e18)
       );
       const deadline =
         BigInt(Math.floor(Date.now() / 1000)) +
@@ -97,7 +93,7 @@ export default function PostBountyPage() {
           amountWei,
           parseInt(form.maxSlots),
           deadline,
-          stakeWei,
+          0n, // stakeRequired — 0 by default
           "", // metadataURI
         ],
         chainId,
@@ -140,7 +136,6 @@ export default function PostBountyPage() {
                   bountyType: "Code",
                   maxSlots: "3",
                   deadlineDays: "7",
-                  stake: "",
                 });
               }}
               className="rounded-full px-4 py-2 text-sm text-muted-foreground hover:text-foreground"
@@ -267,39 +262,22 @@ export default function PostBountyPage() {
               />
             </label>
 
-            {/* Amount + Stake */}
-            <div className="grid gap-4 sm:grid-cols-2">
-              <label className="block">
-                <span className="text-sm font-medium">
-                  Amount ({form.token})
-                </span>
-                <input
-                  type="number"
-                  required
-                  min="0"
-                  step="0.01"
-                  value={form.amount}
-                  onChange={(e) => setForm({ ...form, amount: e.target.value })}
-                  placeholder="50"
-                  className="mt-1.5 w-full rounded-xl border border-border bg-card px-3 py-2.5 text-sm"
-                />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium">
-                  Stake Required ({form.token})
-                </span>
-                <input
-                  type="number"
-                  required
-                  min="0"
-                  step="0.01"
-                  value={form.stake}
-                  onChange={(e) => setForm({ ...form, stake: e.target.value })}
-                  placeholder="5"
-                  className="mt-1.5 w-full rounded-xl border border-border bg-card px-3 py-2.5 text-sm"
-                />
-              </label>
-            </div>
+            {/* Amount */}
+            <label className="block">
+              <span className="text-sm font-medium">
+                Amount ({form.token})
+              </span>
+              <input
+                type="number"
+                required
+                min="0"
+                step="0.01"
+                value={form.amount}
+                onChange={(e) => setForm({ ...form, amount: e.target.value })}
+                placeholder="50"
+                className="mt-1.5 w-full rounded-xl border border-border bg-card px-3 py-2.5 text-sm"
+              />
+            </label>
 
             {/* Max Slots + Deadline */}
             <div className="grid gap-4 sm:grid-cols-2">
