@@ -29,8 +29,8 @@ export async function fetchLiveStats(chainId: number = DEFAULT_CHAIN_ID): Promis
   const reads = await client.multicall({
     contracts: [
       { address: deploy.core, abi: coreAbi, functionName: "bountyCount" },
-      { address: deploy.core, abi: coreAbi, functionName: "totalBountyVolume" },
-      { address: deploy.core, abi: coreAbi, functionName: "totalProtocolRevenue" },
+      { address: deploy.core, abi: coreAbi, functionName: "totalBountyVolume", args: [deploy.tokens.cUSD] },
+      { address: deploy.core, abi: coreAbi, functionName: "totalProtocolRevenue", args: [deploy.tokens.cUSD] },
       { address: deploy.core, abi: coreAbi, functionName: "totalBountiesResolved" },
       { address: deploy.core, abi: coreAbi, functionName: "uniquePosterCount" },
       { address: deploy.core, abi: coreAbi, functionName: "uniqueWorkerCount" },
