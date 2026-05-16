@@ -9,7 +9,6 @@ import { useState, useRef, useEffect } from "react";
 // Ordered in logical grouping: EVM chains first, then Solana
 const CHAIN_ORDER: ChainNetwork[] = [
   ChainNetwork.CELO,
-  ChainNetwork.ARBITRUM,
   ChainNetwork.BASE,
   ChainNetwork.POLYGON,
   ChainNetwork.SOLANA,
@@ -18,10 +17,9 @@ const CHAIN_ORDER: ChainNetwork[] = [
 // Map ChainNetwork to chainId for CHAIN_META lookup
 const NETWORK_TO_CHAIN_ID: Record<ChainNetwork, number> = {
   [ChainNetwork.CELO]: 42220,
-  [ChainNetwork.ARBITRUM]: 42161,
   [ChainNetwork.BASE]: 8453,
   [ChainNetwork.POLYGON]: 137,
-  [ChainNetwork.SOLANA]: -1, // non-EVM, use special meta
+  [ChainNetwork.SOLANA]: -1,
 };
 
 const SOLANA_META = {

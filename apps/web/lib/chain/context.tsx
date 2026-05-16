@@ -1,7 +1,7 @@
 "use client";
 
 // React context for managing the active chain adapter.
-// Supports Celo, Arbitrum, Base, Polygon (EVM) + Solana.
+// Supports Celo, Base, Polygon (EVM) + Solana.
 
 import React, {
   createContext,
@@ -18,7 +18,6 @@ import { createEvmAdapter } from "./evm-adapter";
 import { createSolanaAdapter } from "./solana-adapter";
 import {
   celoMainnet,
-  arbitrumMainnet,
   baseMainnet,
   polygonMainnet,
   CHAIN_META,
@@ -49,13 +48,6 @@ function getAdapter(network: ChainNetwork): ChainAdapter {
         celoMainnet.id,
         celoMainnet,
         CHAIN_META[celoMainnet.id]!
-      );
-      break;
-    case ChainNetwork.ARBITRUM:
-      adapter = createEvmAdapter(
-        arbitrumMainnet.id,
-        arbitrumMainnet,
-        CHAIN_META[arbitrumMainnet.id]!
       );
       break;
     case ChainNetwork.BASE:

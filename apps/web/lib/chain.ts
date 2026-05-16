@@ -1,10 +1,9 @@
-// Chain definitions — Celo + Arbitrum + Base + Polygon.
+// Chain definitions — Celo + Base + Polygon.
 // All are built-in viem chains.
 
 import {
   celo,
   celoAlfajores,
-  arbitrum,
   base,
   polygon,
 } from "viem/chains";
@@ -13,7 +12,6 @@ import { type Chain } from "viem";
 // ── Production chains ────────────────────────────────────────────
 
 export const celoMainnet = celo;
-export const arbitrumMainnet = arbitrum;
 export const baseMainnet = base;
 export const polygonMainnet = polygon;
 
@@ -25,7 +23,6 @@ export const celoSepolia = celoAlfajores;
 
 export const ALL_CHAINS: readonly [Chain, ...Chain[]] = [
   celoMainnet,
-  arbitrumMainnet,
   baseMainnet,
   polygonMainnet,
   celoSepolia,
@@ -74,19 +71,6 @@ export const CHAIN_META: Record<number, ChainMeta> = {
     nativeSymbol: "CELO",
     status: "live",
   },
-  [arbitrumMainnet.id]: {
-    id: arbitrumMainnet.id,
-    name: "Arbitrum",
-    shortName: "ARB",
-    color: "bg-blue-500",
-    textColor: "text-blue-400",
-    borderColor: "border-blue-500/30",
-    hoverColor: "hover:bg-blue-500/10",
-    rpcUrl: "https://arb1.arbitrum.io/rpc",
-    explorerUrl: "https://arbiscan.io",
-    nativeSymbol: "ETH",
-    status: "soon",
-  },
   [baseMainnet.id]: {
     id: baseMainnet.id,
     name: "Base",
@@ -98,7 +82,7 @@ export const CHAIN_META: Record<number, ChainMeta> = {
     rpcUrl: "https://mainnet.base.org",
     explorerUrl: "https://basescan.org",
     nativeSymbol: "ETH",
-    status: "soon",
+    status: "live",
   },
   [polygonMainnet.id]: {
     id: polygonMainnet.id,
@@ -108,9 +92,9 @@ export const CHAIN_META: Record<number, ChainMeta> = {
     textColor: "text-purple-400",
     borderColor: "border-purple-500/30",
     hoverColor: "hover:bg-purple-500/10",
-    rpcUrl: "https://polygon-rpc.com",
+    rpcUrl: "https://polygon-bor-rpc.publicnode.com",
     explorerUrl: "https://polygonscan.com",
     nativeSymbol: "MATIC",
-    status: "soon",
+    status: "live",
   },
 } as const;

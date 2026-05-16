@@ -31,17 +31,22 @@ const DEPLOYMENTS: Partial<Record<number, EvmDeployment>> = {
     core: "0x1362d874F40B7e28836cBeCcA14f5EfBe6c6E423",
     cUSD: "0x765DE816845861e75A25fCA122bb6898B8B1282a",
   },
-  // TODO: deploy ClaudelanceCore to Arbitrum/Base/Polygon and fill these
-  // 42161: { core: "0x...", cUSD: "0x..." },  // Arbitrum
-  // 8453:  { core: "0x...", cUSD: "0x..." },  // Base
-  // 137:   { core: "0x...", cUSD: "0x..." },  // Polygon
+  // Base — LIVE (deployed 2026-05-16)
+  8453: {
+    core: "0xd765e82f50ea8a03e72405c5ecc133a94a46b067",
+    cUSD: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", // USDC Base
+  },
+  // Polygon — LIVE (deployed 2026-05-16)
+  137: {
+    core: "0xd765e82f50ea8a03e72405c5ecc133a94a46b067",
+    cUSD: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359", // USDC Polygon
+  },
 };
 
 // ── Chain metadata → adapter mapping ──────────────────────────────
 
 const CHAIN_ID_TO_NETWORK: Record<number, ChainNetwork> = {
   42220: ChainNetwork.CELO,
-  42161: ChainNetwork.ARBITRUM,
   8453: ChainNetwork.BASE,
   137: ChainNetwork.POLYGON,
 };
@@ -133,7 +138,7 @@ export function createEvmAdapter(
     },
 
     async fetchStats(): Promise<ChainStats> {
-      if (!deployment || meta.status === "soon") {
+      if (!deployment || deployment.core === "0x0000000000000000000000000000000000000000") {
         return {
           bountyCount: 0,
           totalVolume: 0,
@@ -225,7 +230,7 @@ export function createEvmAdapter(
     },
 
     async fetchBounties(limit = 50): Promise<ChainBounty[]> {
-      if (!deployment || meta.status === "soon") return [];
+      if (!deployment || deployment.core === "0x0000000000000000000000000000000000000000") return [];
 
       try {
         const count = (await publicClient.readContract({

@@ -123,7 +123,6 @@ export const SOLANA_TOKENS: TokenInfo[] = [
 
 const TOKEN_MAP: Record<ChainNetwork, TokenInfo[]> = {
   [ChainNetwork.CELO]: CELO_TOKENS,
-  [ChainNetwork.ARBITRUM]: ARBITRUM_TOKENS,
   [ChainNetwork.BASE]: BASE_TOKENS,
   [ChainNetwork.POLYGON]: POLYGON_TOKENS,
   [ChainNetwork.SOLANA]: SOLANA_TOKENS,
