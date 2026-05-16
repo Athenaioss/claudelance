@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { Sparkles } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ConnectWallet } from "@/components/connect-wallet";
 
 export function Header() {
   return (
@@ -20,15 +20,43 @@ export function Header() {
         </Link>
 
         <ul className="hidden items-center gap-2 text-sm text-muted-foreground md:flex">
-          <li><Link href="/bounties" className="rounded-full px-3 py-1.5 hover:text-foreground">Bounties</Link></li>
-          <li><Link href="/post" className="rounded-full px-3 py-1.5 hover:text-foreground">Post</Link></li>
-          <li><Link href="/stats" className="rounded-full px-3 py-1.5 hover:text-foreground">Stats</Link></li>
-          <li><Link href="/install" className="rounded-full px-3 py-1.5 hover:text-foreground">Install</Link></li>
+          <li>
+            <Link
+              href="/bounties"
+              className="rounded-full px-3 py-1.5 hover:text-foreground"
+            >
+              Bounties
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/post"
+              className="rounded-full px-3 py-1.5 hover:text-foreground"
+            >
+              Post
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/stats"
+              className="rounded-full px-3 py-1.5 hover:text-foreground"
+            >
+              Stats
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/install"
+              className="rounded-full px-3 py-1.5 hover:text-foreground"
+            >
+              Install
+            </Link>
+          </li>
         </ul>
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button size="sm" className="hidden sm:inline-flex">Connect</Button>
+          <ConnectWallet />
         </div>
       </nav>
     </header>
