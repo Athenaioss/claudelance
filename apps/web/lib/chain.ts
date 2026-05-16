@@ -1,37 +1,116 @@
-import { defineChain } from "viem";
-import { celo } from "viem/chains";
+// Chain definitions — Celo + Arbitrum + Base + Polygon.
+// All are built-in viem chains.
+
+import {
+  celo,
+  celoAlfajores,
+  arbitrum,
+  base,
+  polygon,
+} from "viem/chains";
+import { type Chain } from "viem";
+
+// ── Production chains ────────────────────────────────────────────
 
 export const celoMainnet = celo;
+export const arbitrumMainnet = arbitrum;
+export const baseMainnet = base;
+export const polygonMainnet = polygon;
 
-// Celo Sepolia (chain id 11142220) is not yet shipped in viem at the version
-// pinned in this workspace, so define it locally. Mirrors the canonical RPC
-// + Blockscout/Celoscan explorer pairing.
-export const celoSepolia = defineChain({
-  id: 11_142_220,
-  name: "Celo Sepolia",
-  nativeCurrency: { name: "Celo", symbol: "CELO", decimals: 18 },
-  rpcUrls: {
-    default: { http: ["https://forno.celo-sepolia.celo-testnet.org/"] },
-  },
-  blockExplorers: {
-    default: { name: "Celoscan", url: "https://sepolia.celoscan.io" },
-    blockscout: { name: "Blockscout", url: "https://celo-sepolia.blockscout.com" },
-  },
-  contracts: {
-    multicall3: {
-      address: "0xcA11bde05977b3631167028862bE2a173976CA11",
-    },
-  },
-  testnet: true,
-});
+// ── Testnet chains ───────────────────────────────────────────────
 
-export const supportedChains = [celoSepolia, celoMainnet] as const;
+export const celoSepolia = celoAlfajores;
 
-export type SupportedChainId = (typeof supportedChains)[number]["id"];
+// ── All supported chains ─────────────────────────────────────────
 
-export const DEFAULT_CHAIN_ID: SupportedChainId =
-  process.env.NEXT_PUBLIC_DEFAULT_CHAIN === "celo-sepolia" ? celoSepolia.id : celoMainnet.id;
+export const ALL_CHAINS: readonly [Chain, ...Chain[]] = [
+  celoMainnet,
+  arbitrumMainnet,
+  baseMainnet,
+  polygonMainnet,
+  celoSepolia,
+] as const;
 
-export function chainById(id: number) {
-  return supportedChains.find((c) => c.id === id);
+// ── Lookup ───────────────────────────────────────────────────────
+
+export const DEFAULT_CHAIN_ID = celoMainnet.id; // 42220
+
+const CHAIN_MAP = new Map<number, Chain>();
+for (const c of ALL_CHAINS) {
+  CHAIN_MAP.set(c.id, c);
 }
+
+export function chainById(chainId: number): Chain | undefined {
+  return CHAIN_MAP.get(chainId);
+}
+
+// ── Chain metadata for UI ────────────────────────────────────────
+
+export interface ChainMeta {
+  id: number;
+  name: string;
+  shortName: string;
+  color: string;
+  textColor: string;
+  borderColor: string;
+  hoverColor: string;
+  rpcUrl: string;
+  explorerUrl: string;
+  nativeSymbol: string;
+  status: "live" | "soon";
+}
+
+export const CHAIN_META: Record<number, ChainMeta> = {
+  [celoMainnet.id]: {
+    id: celoMainnet.id,
+    name: "Celo",
+    shortName: "CELO",
+    color: "bg-emerald-500",
+    textColor: "text-emerald-400",
+    borderColor: "border-emerald-500/30",
+    hoverColor: "hover:bg-emerald-500/10",
+    rpcUrl: "https://forno.celo.org",
+    explorerUrl: "https://celoscan.io",
+    nativeSymbol: "CELO",
+    status: "live",
+  },
+  [arbitrumMainnet.id]: {
+    id: arbitrumMainnet.id,
+    name: "Arbitrum",
+    shortName: "ARB",
+    color: "bg-blue-500",
+    textColor: "text-blue-400",
+    borderColor: "border-blue-500/30",
+    hoverColor: "hover:bg-blue-500/10",
+    rpcUrl: "https://arb1.arbitrum.io/rpc",
+    explorerUrl: "https://arbiscan.io",
+    nativeSymbol: "ETH",
+    status: "soon",
+  },
+  [baseMainnet.id]: {
+    id: baseMainnet.id,
+    name: "Base",
+    shortName: "BASE",
+    color: "bg-indigo-500",
+    textColor: "text-indigo-400",
+    borderColor: "border-indigo-500/30",
+    hoverColor: "hover:bg-indigo-500/10",
+    rpcUrl: "https://mainnet.base.org",
+    explorerUrl: "https://basescan.org",
+    nativeSymbol: "ETH",
+    status: "soon",
+  },
+  [polygonMainnet.id]: {
+    id: polygonMainnet.id,
+    name: "Polygon",
+    shortName: "MATIC",
+    color: "bg-purple-500",
+    textColor: "text-purple-400",
+    borderColor: "border-purple-500/30",
+    hoverColor: "hover:bg-purple-500/10",
+    rpcUrl: "https://polygon-rpc.com",
+    explorerUrl: "https://polygonscan.com",
+    nativeSymbol: "MATIC",
+    status: "soon",
+  },
+} as const;

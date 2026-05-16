@@ -4,6 +4,9 @@ export type ChainId = number | string; // EVM uses number, Solana uses string
 
 export enum ChainNetwork {
   CELO = "celo",
+  ARBITRUM = "arbitrum",
+  BASE = "base",
+  POLYGON = "polygon",
   SOLANA = "solana",
 }
 
